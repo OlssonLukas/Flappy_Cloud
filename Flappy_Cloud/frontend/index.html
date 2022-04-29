@@ -6,19 +6,45 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flappy clouds</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="start.css">
 </head>
 
 <body>
-  <img class="bird" src="./resources/bird.gif" alt="bird-img">
-  <div class="message">
-    Click to start your flight
+
+  <div class="menu">
+    <h1>Flappy Cloud</h1>
+    <div class="signin">
+      <button id="sign-in-button">Sign in</button>
+      <button id="sign-up-buttton">Sign up</button>
+    </div>
   </div>
-  <div class="score">
-    <span class="score_title"></span>
-    <span class="score_val"></span>
+
+  <div class="wrapper">
+
+    <div class="statistics">
+      <div class="leaderboard">
+        <h2>Leaderboard</h2>
+        <ul>
+          <li>Sandra: 254</li>
+          <li>Lisa: 201</li>
+          <li>Elis: 154</li>
+          <li>Jonas: 98</li>
+        </ul>
+      </div>
+      <div class="totalFlaps">
+        <h2>Total flaps in game: 265894</h2>
+      </div>
+    </div>
+    <div class="start-game">
+      <img src="./resources/birdScout.gif" alt="">
+      <button id="play-button" onclick="playGame()">Start flying</button>
+    </div>
   </div>
-  <script src="game.js"></script>
+
+
+
+
+  <script src="start.js"></script>
 </body>
 
 

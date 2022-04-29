@@ -17,7 +17,7 @@ body {
   height: 100vh;
   width: 100vw;
   background-color: rgb(45, 45, 45);
-  background-image: url('resources/firewatchStandard.jpeg');
+  background-image: url('resources/firewatchGreen.webp');
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
@@ -33,23 +33,17 @@ body {
   left: 30vw;
   z-index: 100;
   -webkit-user-select: none;
-  /* Chrome all / Safari all */
   -moz-user-select: none;
-  /* Firefox all             */
   -ms-user-select: none;
-  /* Internet Explorer  10+  */
   user-select: none;
-  /* Likely future           */
 }
 
 .pipe_sprite {
   position: fixed;
-  top: 40vh;
+  top: 30vh;
   left: 100vw;
-  height: 70vh;
-  width: 6vw;
-  background-color: transparent;
-  border: 2px solid whitesmoke;
+  height: 30vh;
+  width: 20vw;
 }
 
 .message {
@@ -62,6 +56,10 @@ body {
   top: 12vh;
   left: 20vw;
   text-align: center;
+}
+
+.message p {
+  font-size: 20px;
 }
 
 .score {
