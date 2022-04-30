@@ -1,16 +1,23 @@
 let move_speed = 3;
 let gravity = 0.35;
 
-let bird = document.querySelector('.bird');
-let bird_props = bird.getBoundingClientRect();
-let background = document.querySelector('body').getBoundingClientRect();
-let score_val = document.querySelector('.score_val');
-let message = document.querySelector('.message');
-let score_title = document.querySelector('.score_title');
+let bird;
+let bird_props;
+let background;
+let score_val;
+let message;
+let score_title;
 
 let game_state = 'Start';
 
 document.addEventListener('click', (e) => {
+
+  bird = document.querySelector('.bird');
+  bird_props = bird.getBoundingClientRect();
+  background = document.querySelector('body').getBoundingClientRect();
+  score_val = document.querySelector('.score_val');
+  message = document.querySelector('.message');
+  score_title = document.querySelector('.score_title');
 
   if (game_state !== 'Play') {
 
