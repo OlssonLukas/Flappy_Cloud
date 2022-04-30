@@ -13,7 +13,8 @@
 
 body {
   height: 100vh;
-  width: 100vw;
+  width: auto;
+  display: flex;
   background-color: rgb(45, 45, 45);
   background-image: url('resources/firewatchStandard.jpeg');
   background-size: cover;
@@ -25,6 +26,7 @@ body {
 
 .menu {
   height: 70px;
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -48,7 +50,7 @@ body {
 .menu h1 {
   margin-left: 20px;
   font-family: 'Abril Fatface';
-  font-size: 50px;
+  font-size: 40px;
   color: rgb(247, 241, 231);
 }
 
@@ -118,4 +120,43 @@ body {
 img {
   height: 500px;
   width: 500px;
+}
+
+@media only screen and (max-width: 480px) {
+
+  .menu h1 {
+    font-size: 25px;
+  }
+
+  .menu button {
+    font-size: 14px;
+    height: 30px;
+    width: 50px;
+  }
+
+  .leaderboard {
+    padding: 15px;
+    margin-top: 60px;
+  }
+
+  .leaderboard h2 {
+    font-size: 20px;
+  }
+
+  .leaderboard ul {
+    margin-left: 15px;
+    font-size: 15px;
+    line-height: 2.5;
+  }
+
+  .totalFlaps {
+    margin-left: 30px;
+    font-size: 15px;
+  }
+
+  img {
+    height: 200px;
+    width: 200px;
+  }
+
 }
