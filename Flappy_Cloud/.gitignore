@@ -105,3 +105,5 @@ dist
 
 #Mac DS Store files
 .DS_Store
+
+migrations/
