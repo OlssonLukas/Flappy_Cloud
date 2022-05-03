@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url('resources/firewatchGreen.webp');
+}
+
+.game {
+  height: 100vh;
+  width: 100vw;
+}
+
+.bird {
+  height: 100px;
+  width: 160px;
+  position: fixed;
+  top: 40vh;
+  left: 30vw;
+  z-index: 100;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.cloud {
+  position: fixed;
+  top: 30vh;
+  left: 100vw;
+  height: 30vh;
+  width: 30vw;
+}
+
+.message {
+  position: fixed;
+  z-index: 10;
+  height: 10vh;
+  font-size: 35px;
+  font-family: 'Bree Serif';
+  color: whitesmoke;
+  top: 12vh;
+  left: 20vw;
+  text-align: center;
+}
+
+.message p {
+  font-size: 20px;
+}
+
+.score {
+  position: fixed;
+  z-index: 10;
+  height: 10vh;
+  font-size: 20px;
+  font-family: 'Staatliches';
+  color: whitesmoke;
+  top: 5vh;
+  left: 10vw;
+}
+
+.score_val {
+  color: whitesmoke;
+  font-family: 'Square Peg';
+  font-size: 40px;
+}
+
+@media only screen and (max-width: 480px) {
+
+  .bird {
+    left: 2vw;
+  }
+
+  .pipe_sprite {
+    width: 10vw;
+  }
+
+}
