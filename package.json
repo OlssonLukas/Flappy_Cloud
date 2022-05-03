@@ -4,9 +4,21 @@
   "description": "A cloud based game app",
   "main": "index.js",
   "scripts": {
-    "start": "node Flappy_Cloud/frontend/game.js",
+    "start": "nodemon Flappy_Cloud/backend/index.js",
+    "server": "nodemon Flappy_Cloud/backend/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "knex": "^2.0.0",
+    "pg": "^8.7.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "sqlite3": "^5.0.5"
+  }
 }
