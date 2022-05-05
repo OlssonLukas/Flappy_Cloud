@@ -187,14 +187,18 @@ function gameOver() {
         <div class="leaderboard">
           <h2>Leaderboard</h2>
           <ul>
-            <li>Sandra: 254</li>
-            <li>Lisa: 201</li>
-            <li>Elis: 154</li>
-            <li>Jonas: 98</li>
+            <li>SANDRA: 254</li>
+            <li>LISA: 201</li>
+            <li>ELIS: 154</li>
+            <li>JONAS: 98</li>
+            <li>LOPPY: 88</li>
+            <li>STREIGE: 69</li>
+            <li>ADAM: 52</li>
           </ul>
         </div>
-        <div class="totalFlaps">
-          <h2>Total flaps in game: 265894</h2>
+         <div class="totalFlaps">
+          <h2>TOTAL FLAPS IN GAME: </h2>
+          <h2> 265894</h2>
         </div>
       </div>
       <div class="start-game">
@@ -202,7 +206,10 @@ function gameOver() {
         <button class="play-button">Start flying</button>
       </div>
     </div>`;
+
+    document.body.style.backgroundImage = 'url("./resources/bgstart.jpeg")'
   }, 2000);
+
 
   game_state = 'Start';
 }

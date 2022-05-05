@@ -1,9 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;600&display=swap');
 
 * {
   margin: 0;
@@ -16,11 +12,10 @@ body {
   width: auto;
   display: flex;
   background-color: rgb(45, 45, 45);
-  background-image: url('resources/firewatchStandard.jpeg');
+  background-image: url('resources/bgstart.jpeg');
   background-size: cover;
   background-attachment: fixed;
   background-position: center center;
-  box-shadow: inset 400px 400px 400px 400px rgba(0, 0, 0, .3);
   overflow: hidden;
 }
 
@@ -30,28 +25,56 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: rgba(2, 0, 24, 0.713);
+}
+
+.signin {
+  display: flex;
+}
+
+button {
+  background-color: rgb(247, 241, 231);
+  border: 2px solid black;
+  cursor: pointer;
 }
 
 .menu button {
   margin-right: 20px;
   height: 30px;
   width: 100px;
-  background-color: rgb(247, 241, 231);
   font-family: 'Staatliches';
   font-size: 20px;
-  cursor: pointer;
 }
 
-.menu button:hover {
-  background-color: rgb(179, 119, 6);
+button:hover {
+  background-color: rgba(0, 0, 0, 0.719);
+  color: rgb(247, 241, 231);
+}
+
+.dropdown-content-in,
+.dropdown-content-up {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  width: 300px;
+  right: 100px;
+  margin-top: 20px;
+  border: 2px solid black;
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown-content-in p,
+.dropdown-content-up p {
+
+  font-family: 'Montserrat';
 }
 
 .menu h1 {
-  margin-left: 20px;
-  font-family: 'Abril Fatface';
-  font-size: 40px;
-  color: rgb(247, 241, 231);
+  margin-left: 40px;
+  margin-top: 20px;
+  font-family: 'Staatliches';
+  font-size: 55px;
+  color: rgb(0, 0, 0);
 }
 
 .wrapper {
@@ -70,30 +93,58 @@ body {
 }
 
 .leaderboard {
-  background-color: rgba(0, 0, 0, 0.792);
-  padding: 50px;
+  background-color: rgb(255, 255, 255);
+  border: 3px solid rgb(0, 0, 0);
+  padding: 30px 50px;
   margin-bottom: 70px;
 }
 
 .leaderboard h2 {
-  font-family: 'Anton';
-  color: rgb(247, 241, 231);
+  font-family: 'Staatliches';
+  color: rgb(0, 0, 0);
+  font-size: 35px;
+  padding-bottom: 30px;
 }
 
 .leaderboard ul {
   list-style: decimal;
   line-height: 1.8;
-  margin-top: 10px;
-  margin-left: 30px;
-  font-family: 'Staatliches';
+  font-family: 'Montserrat';
   font-size: 18px;
-  color: rgb(247, 241, 231);
+  font-weight: 600;
+  margin-left: 15px;
+  color: rgb(0, 0, 0);
+}
+
+.leaderboard li:first-child {
+  color: rgb(234, 199, 0);
+}
+
+.leaderboard li:nth-child(2) {
+  color: rgb(158, 158, 158);
+}
+
+.leaderboard li:nth-child(3) {
+  color: rgb(114, 88, 27);
 }
 
 .totalFlaps {
-  font-family: 'Lancelot';
-  font-size: 18px;
-  color: rgb(247, 241, 231);
+  border: 3px solid rgb(0, 0, 0);
+  background-color: rgb(255, 255, 255);
+  font-family: 'Montserrat';
+  font-size: 12px;
+  color: rgb(0, 0, 0);
+  padding: 15px;
+}
+
+.totalFlaps h2 {
+  display: inline;
+}
+
+.totalFlaps h2:nth-child(2) {
+  margin-left: 10px;
+  font-size: 25px;
+  font-family: 'Staatliches';
 }
 
 .start-game {
@@ -105,16 +156,9 @@ body {
 
 .start-game button {
   padding: 10px;
-  background-color: rgba(0, 0, 0, 0.714);
   font-family: 'Staatliches';
-  font-size: 20px;
-  color: beige;
-  cursor: pointer;
-}
-
-.start-game button:hover {
-  background-color: beige;
-  color: black;
+  font-size: 23px;
+  cursor: url('./resources/plane.png') 2 2, pointer;
 }
 
 img {
