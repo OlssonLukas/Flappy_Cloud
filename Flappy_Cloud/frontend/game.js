@@ -208,7 +208,7 @@ function gameOver() {
       </div>
     </div>`;
     } else {
-      changeHomeScreen(user);
+      singedInScreen(user);
     }
 
     document.body.style.backgroundImage = 'url("./resources/bgstart.jpeg")'

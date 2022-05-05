@@ -54,7 +54,7 @@ document.body.addEventListener('click', (e) => {
 
       user = username.toUpperCase();
 
-      changeHomeScreen(user);
+      singedInScreen(user);
       signedin = true;
     }
 
@@ -66,7 +66,7 @@ document.body.addEventListener('click', (e) => {
     //make call to create user
     if (username === 'user' && password === 'pass') {
       user = username.toUpperCase();
-      changeHomeScreen(user);
+      singedInScreen(user);
       signedin = true;
     }
 
@@ -74,7 +74,7 @@ document.body.addEventListener('click', (e) => {
 });
 
 
-function changeHomeScreen(username) {
+function singedInScreen(username) {
   document.querySelector('.content').innerHTML = ` <div class="menu">
       <h1>Flappy Cloud</h1>
       <div class="signin">
