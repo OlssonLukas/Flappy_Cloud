@@ -137,14 +137,14 @@ function play() {
     requestAnimationFrame(apply_gravity);
   }, 1000 / fps);
 
-  let pipe_seperation = 0;
+  let cloud_seperation = 0;
 
-  let pipe_gap = 20;
+  let cloud_gap = 20;
 
   function createCloud() {
 
-    if (pipe_seperation > 120) {
-      pipe_seperation = 0
+    if (cloud_seperation > 120) {
+      cloud_seperation = 0
 
       let cloud_pos = Math.floor(Math.random() * 43) + 8;
       let cloud_inv = document.createElement('img');
@@ -157,13 +157,13 @@ function play() {
       let cloud = document.createElement('img');
       cloud.src = './resources/cloud.png';
       cloud.className = 'cloud';
-      cloud.style.top = cloud_pos + pipe_gap + 'vh';
+      cloud.style.top = cloud_pos + cloud_gap + 'vh';
       cloud.style.left = '100vw';
       cloud.increase_score = '1';
 
       document.body.appendChild(cloud);
     }
-    pipe_seperation++;
+    cloud_seperation++;
     if (game_state === 'Play') setTimeout(() => {
       requestAnimationFrame(createCloud);
     }, 1000 / fps);
@@ -224,19 +224,12 @@ function gameOver() {
       <div class="statistics">
         <div class="leaderboard">
           <h2>Leaderboard</h2>
-          <ul>
-            <li>SANDRA: 254</li>
-            <li>LISA: 201</li>
-            <li>ELIS: 154</li>
-            <li>JONAS: 98</li>
-            <li>LOPPY: 88</li>
-            <li>STREIGE: 69</li>
-            <li>ADAM: 52</li>
+          <ul id="leaderboardUL">
           </ul>
         </div>
         <div class="totalFlaps">
           <h2>TOTAL FLAPS IN GAME: </h2>
-          <h2> 265894</h2>
+          <h2 id="totalFlapsH2"></h2>
         </div>
       </div>
       <div class="start-game">
@@ -248,6 +241,7 @@ function gameOver() {
 
   </div>
 `;
+      initializeMetrics();
     } else {
       singedInScreen(user);
     }
