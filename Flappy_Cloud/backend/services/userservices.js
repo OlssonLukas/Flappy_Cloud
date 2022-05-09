@@ -1,14 +1,23 @@
-const knex = require('knex');
-const config = require('../../knexfile');
-const db = knex(config.development);
+const res = require("express/lib/response");
+const db = require("../dbConfig");
 
 module.exports = {
   add,
   get,
   findByUsername,
   update,
-  remove
+  remove,
+  login
 };
+
+async function login(user) {
+  db("users").select("username").where('username', user.username)
+    .andWhere('password', user.password).then(function (userO) {
+      console.log(userO[0]?.username === user.username);
+      return (userO[0]?.username === user.username)
+    })
+
+}
 
 async function add(user) {
   const username = db("users").insert(user)

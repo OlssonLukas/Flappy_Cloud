@@ -5,6 +5,7 @@ const Metrics = require('./services/metricservices.js');
 const server = express();
 const port = process.env.PORT || 5001;
 server.use(express.json());
+const db = require("./dbConfig");
 
 
 server.listen(port, () => {
@@ -15,6 +16,20 @@ server.post('/api/adduser', (req, res) => {
   Users.add(req.body)
     .then(user => {
       res.status(200).json(req.body)
+    })
+    .catch(error => {
+      res.status(500).json({ message: "Couldn't add user" });
+    });
+});
+
+server.post('/api/login', (req, res) => {
+  db("users").select("username").where('username', req.body.username)
+    .andWhere('password', req.body.password).then(async function (userO) {
+      return (userO[0]?.username === req.body.username);
+    })
+    .then(user => {
+      console.log(user);
+      res.status(200).json(user)
     })
     .catch(error => {
       res.status(500).json({ message: "Couldn't add user" });
