@@ -6,7 +6,9 @@ const server = express();
 const port = process.env.PORT || 5001;
 server.use(express.json());
 const db = require("./dbConfig");
+const path = require("path")
 
+server.use('/', express.static(path.join(__dirname, '../frontend')))
 
 server.listen(port, () => {
   console.log(`App listening on port ${port}`)
