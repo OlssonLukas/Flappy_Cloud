@@ -1,20 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lancelot&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400&display=swap');
 
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-body {
-  background-image: url('resources/firewatchGreen.webp');
 }
 
 .game {
@@ -39,23 +30,25 @@ body {
   position: fixed;
   top: 30vh;
   left: 100vw;
-  height: 30vh;
-  width: 30vw;
+  height: 25vh;
+  width: 25vw;
 }
 
 .message {
   position: fixed;
   z-index: 10;
   height: 10vh;
-  font-size: 35px;
-  font-family: 'Bree Serif';
-  color: whitesmoke;
-  top: 12vh;
+  font-size: 40px;
+  font-family: 'Staatliches';
+  color: rgb(0, 0, 0);
+  top: 15vh;
   left: 20vw;
   text-align: center;
+
 }
 
 .message p {
+  font-family: 'Montserrat';
   font-size: 20px;
 }
 
@@ -63,17 +56,18 @@ body {
   position: fixed;
   z-index: 10;
   height: 10vh;
-  font-size: 20px;
+  font-size: 30px;
   font-family: 'Staatliches';
-  color: whitesmoke;
+  color: rgb(0, 0, 0);
   top: 5vh;
   left: 10vw;
 }
 
 .score_val {
-  color: whitesmoke;
-  font-family: 'Square Peg';
-  font-size: 40px;
+  color: rgb(0, 0, 0);
+  font-family: 'Staatliches';
+  font-size: 50px;
+  margin-left: 10px;
 }
 
 @media only screen and (max-width: 480px) {
