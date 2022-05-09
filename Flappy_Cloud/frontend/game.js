@@ -173,7 +173,8 @@ function gameOver() {
   setTimeout(() => {
     document.body.style.pointerEvents = "all";
 
-    document.querySelector('.content').innerHTML = `<div class="menu">
+    if (signedin === false) {
+      document.querySelector('.content').innerHTML = `<div class="menu">
       <h1>Flappy Cloud</h1>
       <div class="signin">
         <button id="sign-in-button">Sign in</button>
@@ -206,6 +207,9 @@ function gameOver() {
         <button class="play-button">Start flying</button>
       </div>
     </div>`;
+    } else {
+      singedInScreen(user);
+    }
 
     document.body.style.backgroundImage = 'url("./resources/bgstart.jpeg")'
   }, 2000);

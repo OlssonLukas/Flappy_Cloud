@@ -31,6 +31,12 @@ body {
   display: flex;
 }
 
+.signin p {
+  margin-right: 20px;
+  font-family: 'Staatliches';
+  font-size: 25px;
+}
+
 button {
   background-color: rgb(247, 241, 231);
   border: 2px solid black;
@@ -55,7 +61,7 @@ button:hover {
   display: none;
   position: absolute;
   background-color: #ffffff;
-  width: 300px;
+  width: 350px;
   right: 100px;
   margin-top: 20px;
   border: 2px solid black;
@@ -63,10 +69,29 @@ button:hover {
   z-index: 1;
 }
 
-.dropdown-content-in p,
-.dropdown-content-up p {
-
+.dropdown-content-in input,
+.dropdown-content-up input {
   font-family: 'Montserrat';
+  padding: 5px;
+  margin: 5px;
+}
+
+#login-form-submit,
+#signup-form-submit {
+  background-color: rgb(247, 241, 231);
+  border: 2px solid black;
+  padding: 5px 25px;
+  width: 100px;
+  font-family: 'Staatliches';
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#login-form-submit:hover,
+#signup-form-submit:hover {
+  background-color: rgba(0, 0, 0, 0.719);
+  color: rgb(247, 241, 231);
+
 }
 
 .menu h1 {
