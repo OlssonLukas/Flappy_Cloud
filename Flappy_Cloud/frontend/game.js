@@ -1,5 +1,6 @@
 let move_speed = 3;
-let gravity = 0.35;
+let gravity = 0.3;
+const fps = 800;
 
 let bird;
 let bird_props;
@@ -94,9 +95,13 @@ function play() {
       }
     });
 
-    if (game_state === 'Play') requestAnimationFrame(move);
+    if (game_state === 'Play') setTimeout(() => {
+      requestAnimationFrame(move);
+    }, 1000 / fps);
   }
-  if (game_state === 'Play') requestAnimationFrame(move);
+  if (game_state === 'Play') setTimeout(() => {
+    requestAnimationFrame(move);
+  }, 1000 / fps);
 
   let bird_dy = 0;
 
@@ -104,11 +109,11 @@ function play() {
     bird_dy = bird_dy + gravity;
 
     document.addEventListener('click', (e) => {
-      bird_dy = -7;
+      bird_dy = -6.25;
 
     })
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') bird_dy = -7;
+      if (e.code === 'Space') bird_dy = -6.25;
 
     })
 
@@ -124,9 +129,13 @@ function play() {
     bird.style.top = bird_props.top + bird_dy + 'px';
     bird_props = bird.getBoundingClientRect();
 
-    if (game_state === 'Play') requestAnimationFrame(apply_gravity);
+    if (game_state === 'Play') setTimeout(() => {
+      requestAnimationFrame(apply_gravity);
+    }, 1000 / fps);
   }
-  if (game_state === 'Play') requestAnimationFrame(apply_gravity);
+  if (game_state === 'Play') setTimeout(() => {
+    requestAnimationFrame(apply_gravity);
+  }, 1000 / fps);
 
   let pipe_seperation = 0;
 
