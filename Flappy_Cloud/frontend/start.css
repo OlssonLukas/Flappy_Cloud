@@ -160,7 +160,8 @@ button:hover {
   color: rgb(114, 88, 27);
 }
 
-.totalFlaps {
+.totalFlaps,
+.averagePlayTime {
   border: 3px solid rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
   font-family: 'Montserrat';
@@ -169,11 +170,17 @@ button:hover {
   padding: 15px;
 }
 
-.totalFlaps h2 {
+.averagePlayTime {
+  margin-top: 30px;
+}
+
+.totalFlaps h2,
+#averagePlayTimeH2 {
   display: inline;
 }
 
-.totalFlaps h2:nth-child(2) {
+#totalFlapsH2,
+#averagePlayTimeH2 {
   margin-left: 10px;
   font-size: 25px;
   font-family: 'Staatliches';

@@ -1,6 +1,43 @@
 let signedin = false;
 let user = '';
 
+async function initializeMetrics() {
+  try {
+    reply = await (await fetch('/api/metrics/getallmetrics', {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })).json();
+  } catch (ignore) { }
+
+  reply.sort((a, b) => b.score - a.score);
+
+  let leaderboardHTML = '';
+  for (let user of reply) {
+    leaderboardHTML += `<li>${user.username.toUpperCase()} : ${user.score}</li>`;
+  }
+
+  document.querySelector('#leaderboardUL').innerHTML = leaderboardHTML;
+
+  let totalFlaps = 0;
+
+  for ({ clicks } of reply) {
+    totalFlaps += clicks;
+  }
+
+  document.querySelector('#totalFlapsH2').innerHTML = totalFlaps;
+
+  let averagePlayTime = 0;
+
+  for ({ playtime } of reply) {
+    averagePlayTime += playtime;
+  }
+
+  document.querySelector('#averagePlayTimeH2').innerHTML = averagePlayTime / reply.length;
+
+}
+
+initializeMetrics();
+
 document.body.addEventListener('click', (e) => {
 
   let button = e.target.closest('button');
