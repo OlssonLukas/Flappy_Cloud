@@ -94,6 +94,13 @@ button:hover {
 
 }
 
+#errormessage-in,
+#errormessage-up {
+  font-size: 12px;
+  font-family: 'Montserrat';
+  color: red;
+}
+
 .menu h1 {
   margin-left: 40px;
   margin-top: 20px;

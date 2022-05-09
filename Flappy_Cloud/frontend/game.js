@@ -1,6 +1,6 @@
 let move_speed = 3;
-let gravity = 0.3;
-const fps = 25;
+let gravity = 0.25;
+const fps = 80;
 
 let bird;
 let bird_props;
@@ -109,11 +109,11 @@ function play() {
     bird_dy = bird_dy + gravity;
 
     document.addEventListener('click', (e) => {
-      bird_dy = -6.25;
+      bird_dy = -5;
 
     })
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') bird_dy = -6.25;
+      if (e.code === 'Space') bird_dy = -5;
 
     })
 
@@ -141,32 +141,36 @@ function play() {
 
   let pipe_gap = 20;
 
-  function create_pipe() {
+  function createCloud() {
 
     if (pipe_seperation > 120) {
       pipe_seperation = 0
 
-      let pipe_posi = Math.floor(Math.random() * 43) + 8;
+      let cloud_pos = Math.floor(Math.random() * 43) + 8;
       let cloud_inv = document.createElement('img');
       cloud_inv.src = './resources/cloud.png';
       cloud_inv.className = 'cloud';
-      cloud_inv.style.top = pipe_posi - 50 + 'vh';
+      cloud_inv.style.top = cloud_pos - 50 + 'vh';
       cloud_inv.style.left = '100vw';
 
       document.body.appendChild(cloud_inv);
       let cloud = document.createElement('img');
       cloud.src = './resources/cloud.png';
       cloud.className = 'cloud';
-      cloud.style.top = pipe_posi + pipe_gap + 'vh';
+      cloud.style.top = cloud_pos + pipe_gap + 'vh';
       cloud.style.left = '100vw';
       cloud.increase_score = '1';
 
       document.body.appendChild(cloud);
     }
     pipe_seperation++;
-    if (game_state === 'Play') requestAnimationFrame(create_pipe);
+    if (game_state === 'Play') setTimeout(() => {
+      requestAnimationFrame(createCloud);
+    }, 1000 / fps);
   }
-  if (game_state === 'Play') requestAnimationFrame(create_pipe)
+  if (game_state === 'Play') setTimeout(() => {
+    requestAnimationFrame(createCloud);
+  }, 1000 / fps);
 }
 
 
@@ -183,11 +187,35 @@ function gameOver() {
     document.body.style.pointerEvents = "all";
 
     if (signedin === false) {
-      document.querySelector('.content').innerHTML = `<div class="menu">
+      document.querySelector('.content').innerHTML = `    
+      <div class="menu">
       <h1>Flappy Cloud</h1>
       <div class="signin">
-        <button id="sign-in-button">Sign in</button>
-        <button id="sign-up-buttton">Sign up</button>
+        <div class="dropdown singin">
+          <button class="signin-button">Sign in</button>
+          <div class="dropdown-content-in">
+            <form id="login-form">
+              <input type="text" name="username" id="in-username-field" class="login-form-field" placeholder="Username">
+              <p id="errormessage-in"></p>
+              <input type="password" name="password" id="in-password-field" class="login-form-field"
+                placeholder="Password">
+              <input type="submit" value="Login" id="login-form-submit">
+            </form>
+          </div>
+        </div>
+        <div class="dropdown signup">
+          <button class="signup-button">Sign up</button>
+          <div class="dropdown-content-up">
+            <form id="signup-form">
+              <input type="text" name="username" id="up-username-field" class="signup-form-field"
+                placeholder="Username">
+              <p id="errormessage-up"></p>
+              <input type="password" name="password" id="up-password-field" class="signup-form-field"
+                placeholder="Password">
+              <input type="submit" value="Signup" id="signup-form-submit">
+            </form>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -197,21 +225,29 @@ function gameOver() {
         <div class="leaderboard">
           <h2>Leaderboard</h2>
           <ul>
-            <li>Sandra: 254</li>
-            <li>Lisa: 201</li>
-            <li>Elis: 154</li>
-            <li>Jonas: 98</li>
+            <li>SANDRA: 254</li>
+            <li>LISA: 201</li>
+            <li>ELIS: 154</li>
+            <li>JONAS: 98</li>
+            <li>LOPPY: 88</li>
+            <li>STREIGE: 69</li>
+            <li>ADAM: 52</li>
           </ul>
         </div>
         <div class="totalFlaps">
-          <h2>Total flaps in game: 265894</h2>
+          <h2>TOTAL FLAPS IN GAME: </h2>
+          <h2> 265894</h2>
         </div>
       </div>
       <div class="start-game">
         <img src="./resources/birdScout.gif" alt="">
         <button class="play-button">Start flying</button>
       </div>
-    </div>`;
+    </div>
+
+
+  </div>
+`;
     } else {
       singedInScreen(user);
     }
