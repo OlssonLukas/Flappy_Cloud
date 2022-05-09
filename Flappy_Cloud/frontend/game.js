@@ -1,6 +1,6 @@
 let move_speed = 3;
 let gravity = 0.3;
-const fps = 800;
+const fps = 25;
 
 let bird;
 let bird_props;

@@ -6,6 +6,19 @@ const server = express();
 const port = process.env.PORT || 5001;
 server.use(express.json());
 const db = require("./dbConfig");
+const path = require("path")
+
+server.use('/', express.static(path.join(__dirname, '../frontend')))
+
+
+// server.use(express.static(__dirname + '..' + '/frontend'));
+// server.all('/', (req, res) => {
+//   res.sendFile((path.join(
+//     __dirname,
+//     '../frontend',
+//     'index.html')
+//   ))
+// });
 
 
 server.listen(port, () => {
