@@ -38,9 +38,13 @@ document.body.addEventListener('click', (e) => {
       document.querySelector('.dropdown-content-up').style.display = 'block';
     }
   }
+
+  else if (button?.className === 'signout-button') {
+    location.reload();
+  }
 });
 
-document.body.addEventListener('click', (e) => {
+document.body.addEventListener('click', async (e) => {
 
   let button = e.target.closest('input');
 
@@ -49,13 +53,25 @@ document.body.addEventListener('click', (e) => {
     const username = document.querySelector('#login-form').username.value;
     const password = document.querySelector('#login-form').password.value;
 
-    //make call to see if login is correct
-    if (username === 'user' && password === 'pass') {
+    let requestBody = { "username": username, "password": password }
+    let reply;
 
+    try {
+      reply = await (await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })).json();
+    } catch (ignore) { }
+
+    if (reply) {
       user = username.toUpperCase();
-
       singedInScreen(user);
       signedin = true;
+
+    } else {
+      document.querySelector('#errormessage-in').innerHTML = 'Incorrect credentials'
+      document.querySelector('#login-form').password.value = '';
     }
 
   } else if (button?.id === 'signup-form-submit') {
@@ -63,23 +79,39 @@ document.body.addEventListener('click', (e) => {
     const username = document.querySelector('#signup-form').username.value;
     const password = document.querySelector('#signup-form').password.value;
 
-    //make call to create user
-    if (username === 'user' && password === 'pass') {
+    let requestBody = { "username": username, "password": password }
+    let reply;
+
+    try {
+      reply = await (await fetch('/api/adduser', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })).json();
+    } catch (ignore) { reply = false }
+
+    if (reply?.username) {
       user = username.toUpperCase();
       singedInScreen(user);
       signedin = true;
+
+    } else {
+      document.querySelector('#errormessage-up').innerHTML = 'This username already exists'
+      document.querySelector('#signup-form').password.value = '';
     }
 
   }
 });
 
 
-function singedInScreen(username) {
-  document.querySelector('.content').innerHTML = ` <div class="menu">
+async function singedInScreen(username) {
+  const userMetrics = await getUserMetrics(username.toLowerCase());
+  let html = '';
+  html += ` <div class="menu">
       <h1>Flappy Cloud</h1>
       <div class="signin">
           <p>Captain ${username}</p>
-          <button>Sign out</button>
+          <button class="signout-button">Sign out</button>
       </div>
     </div>
 
@@ -88,19 +120,17 @@ function singedInScreen(username) {
       <div class="statistics">
         <div class="leaderboard">
           <h2>Your top scores</h2>
-          <ul>
-            <li>${username}: 56</li>
-            <li>${username}: 32</li>
-            <li>${username}: 23</li>
-            <li>${username}: 18</li>
-            <li>${username}: 8</li>
-            <li>${username}: 5</li>
-            <li>${username}: 2</li>
+          <ul>`
+  if (userMetrics.scores.length > 10) userMetrics.scores.length = 10
+  for (let score of userMetrics.scores) {
+    html += `<li>${username}: ${score}</li>`
+  }
+  html += `
           </ul>
         </div>
         <div class="totalFlaps">
           <h2>YOUR LONGEST PLAYTIME: </h2>
-          <h2> 600 s</h2>
+          <h2>${userMetrics.longestPlaytime}s</h2>
         </div>
       </div>
       <div class="start-game">
@@ -109,4 +139,32 @@ function singedInScreen(username) {
       </div>
     </div>
 `;
+
+  document.querySelector('.content').innerHTML = html;
+}
+
+async function getUserMetrics(username) {
+  let reply;
+  try {
+    reply = await (await fetch(`/api/metrics/usermetrics/${username}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })).json();
+  } catch (ignore) { }
+
+  let userMetrics = { scores: [], longestPlaytime: 0 };
+
+  const scores = reply.map(object => {
+    return object.score;
+  });
+  scores.sort();
+  userMetrics.scores = scores;
+
+  const playtimes = reply.map(object => {
+    return parseInt(object.playtime);
+  });
+
+  userMetrics.longestPlaytime = Math.max(...playtimes);
+
+  return userMetrics;
 }
