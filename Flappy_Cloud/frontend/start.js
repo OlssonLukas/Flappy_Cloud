@@ -12,6 +12,7 @@ async function initializeMetrics() {
   reply.sort((a, b) => b.score - a.score);
 
   let leaderboardHTML = '';
+  if (reply.length > 6) reply.length = 6
   for (let user of reply) {
     leaderboardHTML += `<li>${user.username.toUpperCase()} : ${user.score}</li>`;
   }
@@ -28,14 +29,42 @@ async function initializeMetrics() {
 
   let averagePlayTime = 0;
 
+  /*
   for ({ playtime } of reply) {
     averagePlayTime += playtime;
   }
 
-  document.querySelector('#averagePlayTimeH2').innerHTML = averagePlayTime / reply.length;
+  averagePlayTime = averagePlayTime / reply.length; */
+  document.querySelector('#averagePlayTimeH2').innerHTML = averagePlayTime + ' s';
 
 }
 
+async function updateMetrics() {
+  const playtime = localStorage.getItem('playtime');
+  const clicks = localStorage.getItem('clicks');
+  const score = localStorage.getItem('score');
+
+  console.log('user:' + user + ', playtime: ' + playtime + ', clicks: ' + clicks + ', score: ' + score);
+  if (user && playtime && clicks && score) {
+
+
+    let requestBody = { "username": user.toLowerCase(), "playtime": playtime.toString(), "score": score, "clicks": clicks }
+    let reply;
+
+    try {
+      reply = await (await fetch('/api/metrics/addmetric', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(requestBody)
+      })).json();
+    } catch (ignore) { reply = false }
+
+    console.log(reply);
+  }
+
+}
+
+updateMetrics();
 initializeMetrics();
 
 document.body.addEventListener('click', (e) => {
@@ -158,7 +187,10 @@ async function singedInScreen(username) {
         <div class="leaderboard">
           <h2>Your top scores</h2>
           <ul>`
-  if (userMetrics.scores.length > 10) userMetrics.scores.length = 10
+  if (userMetrics.scores.length > 10) {
+    userMetrics.scores.length = 10
+  }
+
   for (let score of userMetrics.scores) {
     html += `<li>${username}: ${score}</li>`
   }
@@ -191,10 +223,15 @@ async function getUserMetrics(username) {
 
   let userMetrics = { scores: [], longestPlaytime: 0 };
 
-  const scores = reply.map(object => {
+
+  let scores = reply.map(object => {
     return object.score;
   });
-  scores.sort();
+
+  scores = scores.filter(x => x !== null)
+
+  scores.sort((a, b) => b - a);
+
   userMetrics.scores = scores;
 
   const playtimes = reply.map(object => {

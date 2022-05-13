@@ -11,12 +11,18 @@ let score_title;
 
 let game_state = 'Start';
 
+let startTime;
+let endTime;
+let gameTime;
+let clicks = 0;
+
 document.body.addEventListener('click', (e) => {
 
   let div = e.target.closest('div');
 
   if (div?.className !== 'game') return;
 
+  clicks += 1;
 
   bird = document.querySelector('.bird');
   bird_props = bird.getBoundingClientRect();
@@ -44,6 +50,7 @@ document.body.addEventListener('click', (e) => {
 
 
 function play() {
+  start();
   function move() {
 
     if (game_state !== 'Play') return;
@@ -83,7 +90,7 @@ function play() {
             move_speed >= bird_props.left + 50 &&
             element.increase_score == '1'
           ) {
-            score_val.innerHTML = +score_val.innerHTML + 1;
+            score_val.innerHTML = + score_val.innerHTML + 1;
 
             if (score_val % 3 === 0) {
               document.body.style.boxShadow = 'inset 400px 400px 400px 400px rgba(0, 0, 0, .5)';
@@ -113,8 +120,9 @@ function play() {
 
     })
     document.addEventListener('keydown', (e) => {
-      if (e.code === 'Space') bird_dy = -5;
-
+      if (e.code === 'Space') {
+        bird_dy = -5;
+      }
     })
 
     if (bird_props.top <= 0 ||
@@ -175,6 +183,10 @@ function play() {
 
 
 function gameOver() {
+  end();
+  saveMetrics();
+  updateMetrics();
+
   document.querySelectorAll('.cloud').forEach((e) => {
     e.remove();
   });
@@ -221,7 +233,7 @@ function gameOver() {
 
     <div class="wrapper">
 
-      <div class="statistics">
+     <div class="statistics">
         <div class="leaderboard">
           <h2>Leaderboard</h2>
           <ul id="leaderboardUL">
@@ -231,7 +243,12 @@ function gameOver() {
           <h2>TOTAL FLAPS IN GAME: </h2>
           <h2 id="totalFlapsH2"></h2>
         </div>
+        <div class="averagePlayTime">
+          <h2>AVERAGE PLAY TIME: </h2>
+          <h2 id="averagePlayTimeH2"></h2>
+        </div>
       </div>
+
       <div class="start-game">
         <img src="./resources/birdScout.gif" alt="">
         <button class="play-button">Start flying</button>
@@ -251,4 +268,29 @@ function gameOver() {
   }, 2000);
 
   game_state = 'Start';
+}
+
+function start() {
+  startTime = new Date();
+};
+
+function end() {
+  endTime = new Date();
+  let timeDiff = endTime - startTime; //in ms
+  // strip the ms
+  timeDiff /= 1000;
+
+  // get seconds 
+  gameTime = Math.round(timeDiff);
+
+
+}
+
+function saveMetrics() {
+
+  localStorage.setItem('clicks', clicks);
+  localStorage.setItem('playtime', gameTime);
+  localStorage.setItem('score', score_val.innerHTML);
+
+  clicks = 0;
 }
