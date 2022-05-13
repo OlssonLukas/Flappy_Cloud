@@ -128,7 +128,7 @@ button:hover {
   background-color: rgb(255, 255, 255);
   border: 3px solid rgb(0, 0, 0);
   padding: 30px 50px;
-  margin-bottom: 70px;
+  margin-bottom: 30px;
 }
 
 .leaderboard h2 {
@@ -165,7 +165,7 @@ button:hover {
   border: 3px solid rgb(0, 0, 0);
   background-color: rgb(255, 255, 255);
   font-family: 'Montserrat';
-  font-size: 12px;
+  font-size: 11px;
   color: rgb(0, 0, 0);
   padding: 15px;
 }
@@ -175,7 +175,7 @@ button:hover {
 }
 
 .totalFlaps h2,
-#averagePlayTimeH2 {
+.averagePlayTime h2 {
   display: inline;
 }
 
