@@ -277,10 +277,8 @@ function start() {
 function end() {
   endTime = new Date();
   let timeDiff = endTime - startTime; //in ms
-  // strip the ms
   timeDiff /= 1000;
 
-  // get seconds 
   gameTime = Math.round(timeDiff);
 
 
