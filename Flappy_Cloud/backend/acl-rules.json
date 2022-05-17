@@ -1,0 +1,35 @@
+{
+  "user": {
+    "auth": {
+      "get": true,
+      "post": true
+    },
+    "users": {
+      "get": true,
+      "post": true,
+      "put": true
+    },
+    "metrics": {
+      "get": true,
+      "post": true
+    }
+  },
+  "superuser": {
+    "auth": {
+      "get": true,
+      "post": true
+    },
+    "users": {
+      "get": true,
+      "post": true,
+      "put": true,
+      "delete": true
+    },
+    "metrics": {
+      "get": true,
+      "post": true,
+      "put": true,
+      "delete": true
+    }
+  }
+}
