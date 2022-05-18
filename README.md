@@ -3,7 +3,7 @@
 <br />
 <div align="center">
   <a href="https://github.com//OlssonLukas/Flappy_Cloud/">
-    <img src="./frontend/resources/birdScout.gif" alt="Logo" width="120" height="120">
+    <img src="./Flappy_Cloud/frontend/resources/birdScout.gif" alt="Logo" width="120" height="120">
   </a>
 
 <h3 align="center">FLAPPY CLOUD</h3>
@@ -178,6 +178,6 @@ Fanny Söderlund - fannysarasoderlund@gmail.com
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url-lukas]: https://linkedin.com/in/lukas-olsson-64b54a224
 [linkedin-url-fanny]: https://linkedin.com/in/fannysarasoderlund
-[product-screenshot]: ./frontend/resources/demo.png
+[product-screenshot]: ./Flappy_Cloud/frontend/resources/demo.png
 [game-url]: https://flappycloud.herokuapp.com/
 [localhost-url]: http://localhost:5001/
