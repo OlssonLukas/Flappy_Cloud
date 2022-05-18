@@ -29,12 +29,13 @@ async function initializeMetrics() {
 
   let averagePlayTime = 0;
 
-  /*
   for ({ playtime } of reply) {
     averagePlayTime += playtime;
   }
 
-  averagePlayTime = averagePlayTime / reply.length; */
+  averagePlayTime = averagePlayTime / reply.length;
+
+  averagePlayTime = Math.round(averagePlayTime * 10) / 10
   document.querySelector('#averagePlayTimeH2').innerHTML = averagePlayTime + ' s';
 
 }
@@ -164,6 +165,14 @@ document.body.addEventListener('click', async (e) => {
     } catch (ignore) { reply = false }
 
     if (reply?.username) {
+      try {
+        reply = await (await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(requestBody)
+        })).json();
+      } catch (ignore) { }
+
       user = username.toUpperCase();
       singedInScreen(user);
       signedin = true;
