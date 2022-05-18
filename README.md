@@ -39,6 +39,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#docker">Docker</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -57,7 +58,7 @@
 
 <br>
 <br>
-This is a project for cloud development course DA376E in HKR. The project is exploring how to develop for the cloud, deploying and hosting applications using the cloud provider Heroku. This project is a web based game that collects statistics from every signed in user. Statistics such as amount of clicks, playtime and score are gathered and analyzed to be displayed for the users. Data security and collection has been highly considered and an ACL list is implemented to assure that no unauthorized user can view data from other users. 
+This is a project for cloud development course DA376E in HKR. The project is exploring how to develop for the cloud, deploying and hosting applications using the cloud provider Heroku. This project is a web based game that collects statistics from every signed in user. Statistics such as amount of clicks, playtime and score are gathered and analyzed to be displayed for the users. Data security and collection has been highly considered and an ACL list is implemented to assure that no unauthorized user can view data from other users. The entire project was built with Github Actions to ensure the versioning is updated and has continously produced sarif files that give an overall security assessment.
 <br>
 <br>
 The project is hosted by Heroku and uses PostgreSQL to save and persist data. The backend consists of an API that supports users, metrics, and authentication. The API is accessible as a remote service, but only some routes as open for visitors that are not signed in to the application. When connected to the internet, the frontend does calls to the API in order to communicate with the backend and database. Calls like update the user score or get an average of all playtime. If there is no internet connection, the statistics are locally cached in the user's browser engine to then be deployed to the backend and cloud hoster when connection to the internet is re-established. 
@@ -73,6 +74,7 @@ The project is hosted by Heroku and uses PostgreSQL to save and persist data. Th
 * [Heroku](https://heroku.com/)
 * [Express.js](https://expressjs.com/)
 * [PostegreSQL](https://postgresql.org)
+* [Github Actions](https://github.com/features/actions)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
@@ -81,7 +83,7 @@ The project is hosted by Heroku and uses PostgreSQL to save and persist data. Th
 <!-- GETTING STARTED -->
 ## Getting Started
 
-To get a local copy up and running follow these simple example steps.
+To get a local copy up and running follow these simple example steps. Either run it using a docker image or from the terminal using your favorite shell.
 
 ### Prerequisites
 
@@ -110,9 +112,23 @@ The game is now running on localhost port 5001 [[Localhost port 5001]][localhost
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
+### Docker
 
+1. Install Docker at https://www.docker.com
 
+2. Build the Docker image
+   ```sh
+   docker build . -t flappy
+   ```
 
+3. Run the image
+   ```sh
+   docker run -p 5001:5001 flappy
+   ```
+
+4. Checkout the game at [[Localhost port 5001]][localhost-url]
+<br>
+<br>
 
 <!-- USAGE -->
 ## Usage
