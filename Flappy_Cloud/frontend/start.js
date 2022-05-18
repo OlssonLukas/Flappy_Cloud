@@ -51,6 +51,7 @@ async function updateMetrics() {
     let requestBody = { "username": user.toLowerCase(), "playtime": playtime.toString(), "score": score, "clicks": clicks }
     let reply;
 
+    console.log(requestBody);
     try {
       reply = await (await fetch('/api/metrics/addmetric', {
         method: 'POST',
@@ -63,11 +64,11 @@ async function updateMetrics() {
   }
 
 }
-
-updateMetrics();
+console.log(signedin);
+if (signedin) updateMetrics();
 initializeMetrics();
 
-document.body.addEventListener('click', (e) => {
+document.body.addEventListener('click', async (e) => {
 
   let button = e.target.closest('button');
 
@@ -106,6 +107,12 @@ document.body.addEventListener('click', (e) => {
   }
 
   else if (button?.className === 'signout-button') {
+    try {
+      reply = await (await fetch('/api/auth/logout', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      })).json();
+    } catch (ignore) { }
     location.reload();
   }
 });
@@ -123,7 +130,7 @@ document.body.addEventListener('click', async (e) => {
     let reply;
 
     try {
-      reply = await (await fetch('/api/login', {
+      reply = await (await fetch('/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)
@@ -145,11 +152,11 @@ document.body.addEventListener('click', async (e) => {
     const username = document.querySelector('#signup-form').username.value;
     const password = document.querySelector('#signup-form').password.value;
 
-    let requestBody = { "username": username, "password": password }
+    let requestBody = { "username": username, "password": password, "role": "user" }
     let reply;
 
     try {
-      reply = await (await fetch('/api/adduser', {
+      reply = await (await fetch('/api/auth/adduser', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(requestBody)

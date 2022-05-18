@@ -1,4 +1,16 @@
 {
+  "visitor": {
+    "auth": {
+      "get": true,
+      "post": true
+    },
+    "users": {
+      "get": true
+    },
+    "metrics": {
+      "get": true
+    }
+  },
   "user": {
     "auth": {
       "get": true,

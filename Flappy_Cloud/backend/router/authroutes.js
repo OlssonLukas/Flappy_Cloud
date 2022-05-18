@@ -25,8 +25,7 @@ router.post('/login', (req, res) => {
           username: user.username,
           role: user.role
         };
-
-        console.log(req.session)
+        console.log(req.session.user);
         res.status(200).json({ message: `Welcome ${user.username}!` });
       } else {
         res.status(401).json({ message: `Invalid credentials` });
@@ -38,8 +37,11 @@ router.post('/login', (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-  if (req.session) {
+  console.log("logout pressed");
+  if (req?.session) {
     req.session.destroy(error => {
+      console.log("logout worked");
+      res.status(200).json({ message: "you got logged out" })
       if (error) {
         res.status(500).json({ message: 'logout failed' })
       }
