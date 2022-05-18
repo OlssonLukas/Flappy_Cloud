@@ -138,7 +138,7 @@ document.body.addEventListener('click', async (e) => {
       })).json();
     } catch (ignore) { }
 
-    if (reply) {
+    if (reply?.message) {
       user = username.toUpperCase();
       singedInScreen(user);
       signedin = true;
